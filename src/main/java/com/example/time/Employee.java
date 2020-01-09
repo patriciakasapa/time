@@ -2,6 +2,12 @@ package com.example.time;
 
 public class Employee
 {
+    private String employee_id;
+
+    private String employee_lastname;
+
+    private String employee_firstname;
+
     private String employee_phonenumber;
 
     private String employee_email;
@@ -14,17 +20,11 @@ public class Employee
 
     private String[] tech_stack;
 
-    private String employee_id;
+    private String employee_onleave;
 
     private String employee_hire_date;
 
     private Project[] project;
-
-    private String employee_lastname;
-
-    private String employee_firstname;
-
-    private String employee_onleave;
 
     public String getEmployee_phonenumber ()
     {

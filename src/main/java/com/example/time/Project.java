@@ -1,16 +1,18 @@
 package com.example.time;
 
+import java.time.LocalDateTime;
+
 public class Project
 {
-    private String project_description;
-
     private String project_id;
 
     private String project_name;
 
-    private String project_start_date;
+    private String project_description;
 
-    private String project_end_date;
+    private LocalDateTime project_start_date;
+
+    private LocalDateTime project_end_date;
 
     public String getProject_description ()
     {
@@ -42,22 +44,22 @@ public class Project
         this.project_name = project_name;
     }
 
-    public String getProject_start_date ()
+    public LocalDateTime getProject_start_date ()
     {
         return project_start_date;
     }
 
-    public void setProject_start_date (String project_start_date)
+    public void setProject_start_date (LocalDateTime project_start_date)
     {
         this.project_start_date = project_start_date;
     }
 
-    public String getProject_end_date ()
+    public LocalDateTime getProject_end_date ()
     {
         return project_end_date;
     }
 
-    public void setProject_end_date (String project_end_date)
+    public void setProject_end_date (LocalDateTime project_end_date)
     {
         this.project_end_date = project_end_date;
     }
