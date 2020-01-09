@@ -46,6 +46,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         // employees to consider for this date duration
         return availableEmployees.filter( emp -> fitEmployee(emp.getProjects(), projectStartDate, projectEndDate)).collect(Collectors.toList());
     }
+
     private boolean fitEmployee(List<Project> projects, Date projectStartDate, Date projectEndDate) {
         Iterator<Project> iterator = projects.iterator();
         Project current;
