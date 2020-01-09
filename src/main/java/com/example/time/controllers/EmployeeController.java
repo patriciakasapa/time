@@ -1,11 +1,10 @@
 package com.example.time.controllers;
 
-import com.example.time.Employee;
+import com.example.time.models.Employee;
 import com.example.time.serviceImplementors.EmployeeServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
