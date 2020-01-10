@@ -1,0 +1,300 @@
+[
+  {
+      "employee_id":1,
+      "employee_firstname":"Patricia",
+      "employee_lastname":"Agyekum",
+      "employee_phonenumber": "0542698031",
+      "employee_email":"patricia.agyekum@turntabl.io",
+      "employee_address":"Taifa",
+      "employee_dev_level":"INTERMEDIATE",
+      "employee_gender":"FEMALE",
+      "employee_hire_date": "2020-01-08",
+      "employee_onleave": "false",
+      "tech_stack":[
+          "Java", "Hadoop", "Scala"
+      ],
+      "project":[
+          {
+            "project_id":1,
+            "project_name":"TCMP APP",
+            "project_description":"Project Management System",
+            "project_start_date": "2020-02-01",
+            "project_end_date": "2020-03-01"
+          },
+        {
+          "project_id":2,
+          "project_name":"PMP APP",
+          "project_description":"client Management System",
+          "project_start_date": "2019-10-01",
+          "project_end_date": "2019-10-20"
+        }
+      ]
+  },
+
+  {
+      "employee_id":2,
+      "employee_firstname":"dawud",
+      "employee_lastname":"ibrahim",
+      "employee_phonenumber": "0542698031",
+      "employee_email":"patricia.agyekum@turntabl.io",
+      "employee_address":"Taifa",
+      "employee_dev_level":"pro",
+      "employee_gender":"mail",
+      "employee_hire_date":"2020-01-08",
+      "employee_onleave": "false",
+      "tech_stack":[
+        "Java", "Hadoop", "AWS", "NodeJs"
+      ],
+      "project":[
+          {
+            "project_id":3,
+            "project_name":"platter APP",
+            "project_description":"Weather Platter System",
+            "project_start_date": "2019-10-01",
+            "project_end_date": "2019-10-014"
+          },
+          {
+            "project_id":4,
+            "project_name":"time management sys",
+            "project_description":"time mgnmt System",
+            "project_start_date": "2019-10-25",
+            "project_end_date": "2019-11-10"
+          },
+        {
+          "project_id":5,
+          "project_name":"platter APP",
+          "project_description":"Weather Platter System",
+          "project_start_date": "2020-02-10",
+          "project_end_date": "2020-02-15"
+        },
+        {
+          "project_id":6,
+          "project_name":"vote management sys",
+          "project_description":"time mgnmt System",
+          "project_start_date": "2020-03-02",
+          "project_end_date": "2020-03-30"
+        }
+      ]
+    },
+
+
+  {
+    "employee_id":3,
+    "employee_firstname":"alex",
+    "employee_lastname":"owusu",
+    "employee_phonenumber": "0542698031",
+    "employee_email":"patricia.agyekum@turntabl.io",
+    "employee_address":"Taifa",
+    "employee_dev_level":"pro",
+    "employee_gender":"mail",
+    "employee_hire_date":"2020-01-08",
+    "employee_onleave": "true",
+    "tech_stack":[
+      "Java", "python", "AWS", "angular"
+    ],
+    "project":[
+      {
+        "project_id":7,
+        "project_name":"tpms APP",
+        "project_description":"turntable management System",
+        "project_start_date": "2019-11-01",
+        "project_end_date": "2019-11-20"
+      },
+      {
+        "project_id":8,
+        "project_name":"alex management sys",
+        "project_description":"alex mgnmt System",
+        "project_start_date": "2019-11-30",
+        "project_end_date": "2019-12-10"
+      }
+    ]
+  },
+
+
+  {
+    "employee_id":4,
+    "employee_firstname":"john",
+    "employee_lastname":"erbynn",
+    "employee_phonenumber": "0542698031",
+    "employee_email":"patricia.agyekum@turntabl.io",
+    "employee_address":"Taifa",
+    "employee_dev_level":"intermediate",
+    "employee_gender":"male",
+    "employee_hire_date":"2020-01-08",
+    "employee_onleave": "false",
+    "tech_stack":[
+      "Java", "python", "AWS", "angular", "bootstrap"
+    ],
+    "project":[
+      {
+        "project_id":9,
+        "project_name":"tpms APP",
+        "project_description":"turntable management System",
+        "project_start_date": "2019-11-01",
+        "project_end_date": "2019-11-20"
+      },
+      {
+        "project_id":10,
+        "project_name":"alex management sys",
+        "project_description":"alex mgnmt System",
+        "project_start_date": "2020-01-2",
+        "project_end_date": "2020-01-5"
+      },
+      {
+        "project_id":11,
+        "project_name":"future sys",
+        "project_description":"future mgnmt System",
+        "project_start_date": "2020-02-5",
+        "project_end_date": "2020-03-5"
+      }
+    ]
+  },
+
+
+  {
+    "employee_id":  5,
+    "employee_firstname":"bartels",
+    "employee_lastname":"sam",
+    "employee_phonenumber": "0542698031",
+    "employee_email":"patricia.agyekum@turntabl.io",
+    "employee_address":"Taifa",
+    "employee_dev_level":"intermediate",
+    "employee_gender":"male",
+    "employee_hire_date":"2020-01-08",
+    "employee_onleave": "true",
+    "tech_stack": [
+      "Java", "python", "AWS", "angular", "bootstrap", "typescript"
+    ],
+    "project":[
+      {
+        "project_id":9,
+        "project_name":"tpms APP",
+        "project_description":"turntable management System",
+        "project_start_date": "2019-11-01",
+        "project_end_date": "2019-11-20"
+      },
+      {
+        "project_id":8,
+        "project_name":"alex management sys",
+        "project_description":"alex mgnmt System",
+        "project_start_date": "2019-11-30",
+        "project_end_date": "2019-12-10"
+      },
+      {
+        "project_id":11,
+        "project_name":"future sys",
+        "project_description":"future mgnmt System",
+        "project_start_date": "2020-02-5",
+        "project_end_date": "2020-03-5"
+      }
+    ]
+  },
+
+
+  {
+    "employee_id":11,
+    "employee_firstname":"Alexina",
+    "employee_lastname":"Agyekum",
+    "employee_phonenumber": "0542698031",
+    "employee_email":"patricia.agyekum@turntabl.io",
+    "employee_address":"Taifa",
+    "employee_dev_level":"INTERMEDIATE",
+    "employee_gender":"FEMALE",
+    "employee_hire_date":"2020-01-08",
+    "employee_onleave": true,
+    "tech_stack":[
+      "Java", "Hadoop", "AWS"
+    ],
+    "project":[
+      {
+        "project_id":1,
+        "project_name":"TCMP APP",
+        "project_description":"Project Management System",
+        "project_start_date": "2020-01-01",
+        "project_end_date": "2020-03-01"
+      }
+    ]
+  },
+
+
+  {
+    "employee_id":10,
+    "employee_firstname":"Francis",
+    "employee_lastname":"Billa",
+    "employee_phonenumber": "0542698031",
+    "employee_email":"francis.billa@turntabl.io",
+    "employee_address":"Santo",
+    "employee_dev_level":"INTERMEDIATE",
+    "employee_gender":"MALE",
+    "employee_hire_date":"2020-01-08",
+    "employee_onleave": true,
+    "tech_stack":[
+      "Java", "Hadoop", "AWS"
+    ],
+    "project":[
+      {
+        "project_id":1,
+        "project_name":"TCMP APP",
+        "project_description":"Project Management System",
+        "project_start_date": "2020-01-01",
+        "project_end_date": "2020-03-01"
+      },
+      {
+        "project_id":22,
+        "project_name":"TCC APP",
+        "project_description":"Project Management System",
+        "project_start_date": "2020-04-01",
+        "project_end_date": "2020-04-30"
+      },
+      {
+        "project_id":33,
+        "project_name":"COUNTER APP",
+        "project_description":"Project Management System",
+        "project_start_date": "2020-08-01",
+        "project_end_date": "2020-09-01"
+      }
+
+    ]
+  },
+
+
+  {
+    "employee_id":15,
+    "employee_firstname":"Doreen",
+    "employee_lastname":"Doe Doe",
+    "employee_phonenumber": "0542698031",
+    "employee_email":"francis.billa@turntabl.io",
+    "employee_address":"Santo",
+    "employee_dev_level":"INTERMEDIATE",
+    "employee_gender":"MALE",
+    "employee_hire_date":"2020-01-08",
+    "employee_onleave": true,
+    "tech_stack":[
+      "Java", "Hadoop", "AWS"
+    ],
+    "project":[
+      {
+        "project_id":1,
+        "project_name":"TCMP APP",
+        "project_description":"Project Management System",
+        "project_start_date": "2020-01-01",
+        "project_end_date": "2020-03-01"
+      },
+      {
+        "project_id":22,
+        "project_name":"TCC APP",
+        "project_description":"Project Management System",
+        "project_start_date": "2020-04-01",
+        "project_end_date": "2020-04-30"
+      },
+      {
+        "project_id":33,
+        "project_name":"COUNTER APP",
+        "project_description":"Project Management System",
+        "project_start_date": "2020-08-01",
+        "project_end_date": "2020-09-01"
+      }
+
+    ]
+  }
+]
