@@ -235,5 +235,21 @@ public class Employee {
         this.projects = projects;
     }
 
-
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "employee_id=" + employee_id +
+                ", employee_firstname='" + employee_firstname + '\'' +
+                ", employee_lastname='" + employee_lastname + '\'' +
+                ", employee_phonenumber='" + employee_phonenumber + '\'' +
+                ", employee_email='" + employee_email + '\'' +
+                ", employee_address='" + employee_address + '\'' +
+                ", employee_dev_level='" + employee_dev_level + '\'' +
+                ", employee_gender='" + employee_gender + '\'' +
+                ", employee_hire_date='" + employee_hire_date + '\'' +
+                ", employee_onleave=" + employee_onleave +
+                ", tech_stack=" + tech_stack +
+                ", projects=" + projects +
+                '}';
+    }
 }
