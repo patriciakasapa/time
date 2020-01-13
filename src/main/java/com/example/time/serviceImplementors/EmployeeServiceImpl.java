@@ -4,6 +4,7 @@ import com.example.time.models.Employee;
 import com.example.time.models.Leave;
 import com.example.time.models.Project;
 import com.example.time.services.EmployeeService;
+import com.example.time.utils.Common;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -23,7 +24,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class EmployeeServiceImpl implements EmployeeService {
-    public static final DateFormat DATE_FORMAT = new SimpleDateFormat("MM d, yyyy", Locale.ENGLISH);
+    public static final DateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
     private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
     @Override
@@ -44,7 +45,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         // filter out old projects
         Stream<Employee> employeeStream = availableEmployees.filter(x -> {
             List<Project> projects = x.getProjects();
-            List<Project> projectBacklog = projects.stream().filter(project -> project.getProject_end_date().after(getDateNow())).collect(Collectors.toList());
+            List<Project> projectBacklog = projects.stream().filter(project -> Objects.requireNonNull(Common.toDate(project.getProject_end_date())).after(getDateNow())).collect(Collectors.toList());
             x.setProjects(projectBacklog);
             return fitEmployee(projectBacklog, projectStartDate, projectEndDate);
         });
@@ -57,18 +58,17 @@ public class EmployeeServiceImpl implements EmployeeService {
     private boolean fitEmployee(List<Project> projects, Date projectStartDate, Date projectEndDate) {
         Iterator<Project> iterator = projects.iterator();
         Project current;
-
-        do{
+        while (iterator.hasNext()){
             current = iterator.next();
-            if(current != null && projectStartDate.after(current.getProject_end_date())){
-                if ( iterator.hasNext() && projects.get(projects.indexOf(current) + 1).getProject_start_date().before(projectEndDate)){
+            if(current != null && projectStartDate.after(Objects.requireNonNull(Common.toDate(current.getProject_end_date())))){
+                if ( iterator.hasNext() && Objects.requireNonNull(Common.toDate(projects.get(projects.indexOf(current) + 1).getProject_start_date())).before(projectEndDate)){
                     return true;
                 }
                 else if( !iterator.hasNext() ){
                     return true;
                 }
             }
-        }while (iterator.hasNext());
+        }
 
         return false;
     }

@@ -1,13 +1,11 @@
 package com.example.time.models;
 
-import java.util.Date;
-
 public class Project {
     private int project_id;
     private String project_name;
     private String project_description;
-    private Date project_start_date;
-    private Date project_end_date;
+    private String project_start_date;
+    private String project_end_date;
 
     public Project() {
     }
@@ -36,19 +34,19 @@ public class Project {
         this.project_description = project_description;
     }
 
-    public Date getProject_start_date() {
+    public String getProject_start_date() {
         return project_start_date;
     }
 
-    public void setProject_start_date(Date project_start_date) {
+    public void setProject_start_date(String project_start_date) {
         this.project_start_date = project_start_date;
     }
 
-    public Date getProject_end_date() {
+    public String getProject_end_date() {
         return project_end_date;
     }
 
-    public void setProject_end_date(Date project_end_date) {
+    public void setProject_end_date(String project_end_date) {
         this.project_end_date = project_end_date;
     }
 }
