@@ -39,10 +39,10 @@ public class AvailableEmployeesImpl implements IAvailableEmployees {
         Stream<Employee> employeesWithNoLeave = employees.stream().filter( x -> !x.isEmployee_onleave());
         Stream<Employee> availableEmployees = Stream.concat(employeesReturningFromLeave, employeesWithNoLeave);
 
-        // filter out old projects
+        // filter out old projects && fit
         Stream<Employee> employeeStream = availableEmployees.filter(x -> {
             List<Project> projects = x.getProjects();
-            List<Project> projectBacklog = projects.stream().filter(project -> Objects.requireNonNull(Common.toDate(project.getProject_end_date())).after(getDateNow())).collect(Collectors.toList());
+            List<Project> projectBacklog = projects.stream().filter(project -> Objects.requireNonNull(Common.toDate(project.getProject_end_date())).after(projectStartDate)).collect(Collectors.toList());
             x.setProjects(projectBacklog);
             return fitEmployee(projectBacklog, projectStartDate, projectEndDate);
         });
@@ -53,17 +53,20 @@ public class AvailableEmployeesImpl implements IAvailableEmployees {
     }
 
     private boolean fitEmployee(List<Project> projects, Date projectStartDate, Date projectEndDate) {
-        Iterator<Project> iterator = projects.iterator();
-        Project current;
-        while (iterator.hasNext()){
-            current = iterator.next();
-            if(current != null && projectStartDate.after(Objects.requireNonNull(Common.toDate(current.getProject_end_date())))){
-                if ( iterator.hasNext() && Objects.requireNonNull(Common.toDate(projects.get(projects.indexOf(current) + 1).getProject_start_date())).before(projectEndDate)){
-                    return true;
-                }
-                else if( !iterator.hasNext() ){
-                    return true;
-                }
+
+        if ( projects.size() == 0) { return true; }
+        for (int i = 0; i < projects.size(); i ++){
+            if (
+                    projectStartDate.equals(Objects.requireNonNull(Common.toDate(projects.get(i).getProject_end_date()))) ||
+                    projectStartDate.after(Objects.requireNonNull(Common.toDate(projects.get(i).getProject_end_date())))
+            ){
+                if ( i == projects.size() - 1) { return true; }
+                else if (
+                        projectEndDate.equals(Objects.requireNonNull(Common.toDate(projects.get(i+1).getProject_start_date()))) ||
+                    projectEndDate.before(Objects.requireNonNull(Common.toDate(projects.get(i+1).getProject_start_date())))
+                    ){
+                        return true;
+                    }
             }
         }
 
