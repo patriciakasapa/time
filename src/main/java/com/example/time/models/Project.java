@@ -49,4 +49,15 @@ public class Project {
     public void setProject_end_date(String project_end_date) {
         this.project_end_date = project_end_date;
     }
+
+    @Override
+    public String toString() {
+        return "Project{" +
+                "project_id=" + project_id +
+                ", project_name='" + project_name + '\'' +
+                ", project_description='" + project_description + '\'' +
+                ", project_start_date='" + project_start_date + '\'' +
+                ", project_end_date='" + project_end_date + '\'' +
+                '}';
+    }
 }
