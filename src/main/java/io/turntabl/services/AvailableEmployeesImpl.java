@@ -42,8 +42,9 @@ public class AvailableEmployeesImpl implements IAvailableEmployees {
         // filter out old projects && fit
         Stream<Employee> employeeStream = employees.stream().filter(x -> {
             List<Project> projects = x.getProjects();
-            List<Project> projectBacklog = projects.stream().filter(project -> Objects.requireNonNull(Common.toDate(project.getProject_end_date())).after(projectStartDate)).collect(Collectors.toList());
-
+            List<Project> projectBacklog = projects.stream()
+                                            .filter(project -> Objects.requireNonNull(Common.toDate(project.getProject_end_date())).after(projectStartDate))
+                                            .collect(Collectors.toList());
             return fitEmployee(projectBacklog, projectStartDate, projectEndDate);
         });
 
@@ -62,12 +63,13 @@ public class AvailableEmployeesImpl implements IAvailableEmployees {
             ){
                 // System.out.println(projects.get(i));
                 // if ( i == projects.size() - 1) { return true; }
-
+                System.out.println("outer>>> " + projects.get(i));
                  if (   (i < projects.size() - 1) &&(
                         projectEndDate.equals(Objects.requireNonNull(Common.toDate(projects.get(i+1).getProject_start_date()))) ||
                         projectEndDate.before(Objects.requireNonNull(Common.toDate(projects.get(i+1).getProject_start_date())))
                  )
                     ){
+                     System.out.println("inner>>> " + projects.get(i));
                         return true;
                     }
             }

@@ -31,8 +31,9 @@ public class EmployeeController {
          try {
             Date start = DATE_FORMAT.parse(projectStartDate);
             Date end = DATE_FORMAT.parse(projectEndDate);
-             System.out.println(start);
-             System.out.println(end);
+            if ( start.after(end)){
+                return new ArrayList<>();
+            }
             return employeeService.getAllAvailableEmployees(start, end);
         } catch (ParseException e) {
             e.printStackTrace();
