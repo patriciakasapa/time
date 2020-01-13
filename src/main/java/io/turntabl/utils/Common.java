@@ -1,4 +1,4 @@
-package com.example.time.utils;
+package io.turntabl.utils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

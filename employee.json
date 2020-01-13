@@ -201,7 +201,7 @@
     "employee_dev_level":"INTERMEDIATE",
     "employee_gender":"FEMALE",
     "employee_hire_date":"2020-01-08",
-    "employee_onleave": true,
+    "employee_onleave": "true",
     "tech_stack":[
       "Java", "Hadoop", "AWS"
     ],

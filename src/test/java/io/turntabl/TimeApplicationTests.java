@@ -1,4 +1,4 @@
-package com.example.time;
+package io.turntabl;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

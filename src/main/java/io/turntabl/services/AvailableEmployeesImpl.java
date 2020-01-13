@@ -1,15 +1,12 @@
-package com.example.time.serviceImplementors;
+package io.turntabl.services;
 
-import com.example.time.models.Employee;
-import com.example.time.models.Leave;
-import com.example.time.models.Project;
-import com.example.time.services.EmployeeService;
-import com.example.time.utils.Common;
-import com.fasterxml.jackson.core.type.TypeReference;
+import io.turntabl.models.Employee;
+import io.turntabl.models.Leave;
+import io.turntabl.models.Project;
+import io.turntabl.utils.Common;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.text.DateFormat;
@@ -23,7 +20,7 @@ import java.text.ParseException;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class EmployeeServiceImpl implements EmployeeService {
+public class AvailableEmployeesImpl implements IAvailableEmployees {
     public static final DateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
     private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
@@ -33,48 +30,52 @@ public class EmployeeServiceImpl implements EmployeeService {
         List<Employee> employees = getAllEmployees();
 
         // filter out unavailable employees
-        Stream<Employee> employeesReturningFromLeave = employees.stream().filter(Employee::isEmployee_onleave).filter(
+       /* Stream<Employee> employeesReturningFromLeave = employees.stream().filter(Employee::isEmployee_onleave).filter(
                 x -> {
                     Optional<Leave> leave = getLeave(Integer.toString(x.getEmployee_id()));
                     return leave.filter(value -> dateIsBefore(projectStartDate, value)).isPresent();
                 }
         );
         Stream<Employee> employeesWithNoLeave = employees.stream().filter( x -> !x.isEmployee_onleave());
-        Stream<Employee> availableEmployees = Stream.concat(employeesReturningFromLeave, employeesWithNoLeave);
+        Stream<Employee> availableEmployees = Stream.concat(employeesReturningFromLeave, employeesWithNoLeave);*/
 
-        // filter out old projects
-        Stream<Employee> employeeStream = availableEmployees.filter(x -> {
+        // filter out old projects && fit
+        Stream<Employee> employeeStream = employees.stream().filter(x -> {
             List<Project> projects = x.getProjects();
-            List<Project> projectBacklog = projects.stream().filter(project -> Objects.requireNonNull(Common.toDate(project.getProject_end_date())).after(getDateNow())).collect(Collectors.toList());
-            x.setProjects(projectBacklog);
+            List<Project> projectBacklog = projects.stream()
+                                            .filter(project -> Objects.requireNonNull(Common.toDate(project.getProject_end_date())).after(projectStartDate))
+                                            .collect(Collectors.toList());
             return fitEmployee(projectBacklog, projectStartDate, projectEndDate);
         });
 
-        // employees to consider for this date duration
-        // List<Employee> collect = availableEmployees.filter(emp -> fitEmployee(emp.getProjects(), projectStartDate, projectEndDate)).collect(Collectors.toList());
+        // return the list of employees
         return employeeStream.collect(Collectors.toList());
     }
 
     private boolean fitEmployee(List<Project> projects, Date projectStartDate, Date projectEndDate) {
-        Iterator<Project> iterator = projects.iterator();
-        Project current;
-        while (iterator.hasNext()){
-            current = iterator.next();
-            if(current != null && projectStartDate.after(Objects.requireNonNull(Common.toDate(current.getProject_end_date())))){
-                if ( iterator.hasNext() && Objects.requireNonNull(Common.toDate(projects.get(projects.indexOf(current) + 1).getProject_start_date())).before(projectEndDate)){
-                    return true;
-                }
-                else if( !iterator.hasNext() ){
-                    return true;
-                }
+
+        if ( projects.size() == 0) { return true; }
+
+        for (int i = 0; i < projects.size(); i ++){
+            if (
+                    Objects.requireNonNull(Common.toDate(projects.get(i).getProject_end_date())).after(projectStartDate)  ||
+                 Objects.requireNonNull(Common.toDate(projects.get(i).getProject_end_date())).equals(projectStartDate)
+            ){
+                // System.out.println(projects.get(i));
+                // if ( i == projects.size() - 1) { return true; }
+                System.out.println("outer>>> " + projects.get(i));
+                 if (   (i < projects.size() - 1) &&(
+                        projectEndDate.equals(Objects.requireNonNull(Common.toDate(projects.get(i+1).getProject_start_date()))) ||
+                        projectEndDate.before(Objects.requireNonNull(Common.toDate(projects.get(i+1).getProject_start_date())))
+                 )
+                    ){
+                     System.out.println("inner>>> " + projects.get(i));
+                        return true;
+                    }
             }
         }
 
         return false;
-    }
-
-    private Date getDateNow() {
-        return (new Date(System.currentTimeMillis()) );
     }
 
     private boolean dateIsBefore(Date projectStartDate, Leave leave) {
@@ -86,10 +87,6 @@ public class EmployeeServiceImpl implements EmployeeService {
         return isBefore;
     }
 
-//    private Leave getLeave(int employee_id) {
-//        return new Leave();
-//    }
-
 
     private List<Employee> getAllEmployees() {
         List<Employee> employee = new ArrayList<>();
@@ -100,7 +97,7 @@ public class EmployeeServiceImpl implements EmployeeService {
                 emp.setEmployee_firstname(next.get("employee_firstname").asText());
                 emp.setEmployee_lastname(next.get("employee_lastname").asText());
                 emp.setEmployee_onleave(next.get("employee_onleave").asBoolean());
-                // emp.setEmployee_hire_date(new Date(next.get("employee_hire_date").asText()));
+                emp.setEmployee_hire_date(next.get("employee_hire_date").asText());
                 emp.setEmployee_address(next.get("employee_address").asText());
                 emp.setEmployee_email(next.get("employee_email").asText());
                 emp.setEmployee_dev_level(next.get("employee_gender").asText());

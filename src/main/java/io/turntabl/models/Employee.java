@@ -1,8 +1,5 @@
-package com.example.time.models;
+package io.turntabl.models;
 
-import com.example.time.models.Project;
-
-import java.util.Date;
 import java.util.List;
 
 //public class Employee {
@@ -121,9 +118,6 @@ import java.util.List;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-
-import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Employee {
