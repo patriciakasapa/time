@@ -1,15 +1,12 @@
-package com.example.time.serviceImplementors;
+package io.turntabl.serviceImplementors;
 
-import com.example.time.models.Employee;
-import com.example.time.models.Leave;
-import com.example.time.models.Project;
-import com.example.time.services.EmployeeService;
-import com.example.time.utils.Common;
-import com.fasterxml.jackson.core.type.TypeReference;
+import io.turntabl.models.Employee;
+import io.turntabl.models.Leave;
+import io.turntabl.models.Project;
+import io.turntabl.utils.Common;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.text.DateFormat;
@@ -23,7 +20,7 @@ import java.text.ParseException;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class EmployeeServiceImpl implements EmployeeService {
+public class AvailableEmployeesImpl implements IAvailableEmployees {
     public static final DateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
     private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 

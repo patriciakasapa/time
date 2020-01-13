@@ -1,4 +1,4 @@
-package com.example.time.models;
+package io.turntabl.models;
 
 public class Project {
     private int project_id;

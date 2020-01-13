@@ -1,9 +1,9 @@
-package com.example.time.services;
+package io.turntabl.serviceImplementors;
 
-import com.example.time.models.Employee;
+import io.turntabl.models.Employee;
 import java.util.Date;
 import java.util.List;
 
-public interface EmployeeService {
+public interface IAvailableEmployees {
     List<Employee> getAllAvailableEmployees(Date projectStartDate, Date projectEndDate);
 }

@@ -1,6 +1,6 @@
-package com.example.time;
+package io.turntabl;
 
-import com.example.time.serviceImplementors.EmployeeServiceImpl;
+import io.turntabl.serviceImplementors.AvailableEmployeesImpl;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -14,7 +14,7 @@ public class TimeApplication {
 		SpringApplication.run(TimeApplication.class, args);
 	}
 	@Bean
-	public EmployeeServiceImpl getEmployeeService(){
-		return new EmployeeServiceImpl();
+	public AvailableEmployeesImpl getEmployeeService(){
+		return new AvailableEmployeesImpl();
 	}
 }

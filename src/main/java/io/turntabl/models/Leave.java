@@ -1,4 +1,4 @@
-package com.example.time.models;
+package io.turntabl.models;
 
 public class Leave {
     private String id;
