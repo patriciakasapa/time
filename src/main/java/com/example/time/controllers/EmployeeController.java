@@ -26,10 +26,10 @@ public class EmployeeController {
     private EmployeeServiceImpl employeeService;
 
     @ApiOperation("get all availableEmployees")
-    @GetMapping(value = "/availableEmployees/{projectStartDate}/{projectEndDate}", produces = "application/json")
+    @GetMapping(value = "v1/api//availableEmployees", produces = "application/json")
     public List<Employee> getAllAvailableEmployees(
-            @PathVariable("projectStartDate") String projectStartDate,
-            @PathVariable("projectEndDate") String projectEndDate
+            @RequestParam("startDate") String projectStartDate,
+            @RequestParam("endDate") String projectEndDate
     ){
          try {
             Date start = DATE_FORMAT.parse(projectStartDate);
