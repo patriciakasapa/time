@@ -1,6 +1,6 @@
 package io.turntabl;
 
-import io.turntabl.serviceImplementors.AvailableEmployeesImpl;
+import io.turntabl.services.AvailableEmployeesImpl;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;

@@ -1,4 +1,4 @@
-package io.turntabl.serviceImplementors;
+package io.turntabl.services;
 
 import io.turntabl.models.Employee;
 import java.util.Date;

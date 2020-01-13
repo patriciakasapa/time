@@ -1,4 +1,4 @@
-package io.turntabl.serviceImplementors;
+package io.turntabl.services;
 
 import io.turntabl.models.Employee;
 import io.turntabl.models.Leave;
@@ -43,12 +43,11 @@ public class AvailableEmployeesImpl implements IAvailableEmployees {
         Stream<Employee> employeeStream = availableEmployees.filter(x -> {
             List<Project> projects = x.getProjects();
             List<Project> projectBacklog = projects.stream().filter(project -> Objects.requireNonNull(Common.toDate(project.getProject_end_date())).after(projectStartDate)).collect(Collectors.toList());
-            x.setProjects(projectBacklog);
+           // x.setProjects(projectBacklog);
             return fitEmployee(projectBacklog, projectStartDate, projectEndDate);
         });
 
-        // employees to consider for this date duration
-        // List<Employee> collect = availableEmployees.filter(emp -> fitEmployee(emp.getProjects(), projectStartDate, projectEndDate)).collect(Collectors.toList());
+        // return the list of employees
         return employeeStream.collect(Collectors.toList());
     }
 
@@ -60,10 +59,12 @@ public class AvailableEmployeesImpl implements IAvailableEmployees {
                     projectStartDate.equals(Objects.requireNonNull(Common.toDate(projects.get(i).getProject_end_date()))) ||
                     projectStartDate.after(Objects.requireNonNull(Common.toDate(projects.get(i).getProject_end_date())))
             ){
+                System.out.println(projects.get(i));
                 if ( i == projects.size() - 1) { return true; }
+
                 else if (
                         projectEndDate.equals(Objects.requireNonNull(Common.toDate(projects.get(i+1).getProject_start_date()))) ||
-                    projectEndDate.before(Objects.requireNonNull(Common.toDate(projects.get(i+1).getProject_start_date())))
+                        projectEndDate.before(Objects.requireNonNull(Common.toDate(projects.get(i+1).getProject_start_date())))
                     ){
                         return true;
                     }
@@ -71,10 +72,6 @@ public class AvailableEmployeesImpl implements IAvailableEmployees {
         }
 
         return false;
-    }
-
-    private Date getDateNow() {
-        return (new Date(System.currentTimeMillis()) );
     }
 
     private boolean dateIsBefore(Date projectStartDate, Leave leave) {
@@ -86,10 +83,6 @@ public class AvailableEmployeesImpl implements IAvailableEmployees {
         return isBefore;
     }
 
-//    private Leave getLeave(int employee_id) {
-//        return new Leave();
-//    }
-
 
     private List<Employee> getAllEmployees() {
         List<Employee> employee = new ArrayList<>();
@@ -100,7 +93,7 @@ public class AvailableEmployeesImpl implements IAvailableEmployees {
                 emp.setEmployee_firstname(next.get("employee_firstname").asText());
                 emp.setEmployee_lastname(next.get("employee_lastname").asText());
                 emp.setEmployee_onleave(next.get("employee_onleave").asBoolean());
-                // emp.setEmployee_hire_date(new Date(next.get("employee_hire_date").asText()));
+                emp.setEmployee_hire_date(next.get("employee_hire_date").asText());
                 emp.setEmployee_address(next.get("employee_address").asText());
                 emp.setEmployee_email(next.get("employee_email").asText());
                 emp.setEmployee_dev_level(next.get("employee_gender").asText());

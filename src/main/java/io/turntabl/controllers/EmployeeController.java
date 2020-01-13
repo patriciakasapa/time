@@ -1,7 +1,7 @@
 package io.turntabl.controllers;
 
 import io.turntabl.models.Employee;
-import io.turntabl.serviceImplementors.AvailableEmployeesImpl;
+import io.turntabl.services.AvailableEmployeesImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
