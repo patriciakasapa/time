@@ -24,7 +24,7 @@ public class EmployeeController {
     private AvailableEmployeesImpl employeeService;
 
     @ApiOperation("get all availableEmployees")
-    @GetMapping(value = "v1/api//availableEmployees", produces = "application/json")
+    @GetMapping(value = "v1/api/availableEmployees", produces = "application/json")
     public List<Employee> getAllAvailableEmployees(
             @RequestParam("startDate") String projectStartDate,
             @RequestParam("endDate") String projectEndDate

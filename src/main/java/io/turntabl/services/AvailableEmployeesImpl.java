@@ -20,7 +20,7 @@ import java.util.stream.Stream;
 import static java.util.Comparator.*;
 
 public class AvailableEmployeesImpl implements IAvailableEmployees {
-    private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
+    private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();   // from jackson dependency
 
     @Override
     public List<Employee> getAllAvailableEmployees(LocalDate projectStartDate, LocalDate projectEndDate) {
@@ -48,10 +48,10 @@ public class AvailableEmployeesImpl implements IAvailableEmployees {
                                                     employee.setProjects(projectList);
                                                     return fitEmployee(projectList, projectStartDate, projectEndDate );
                                                 })
-                                                .map(EmployeeProfile::getEmployee);
+                                                .map(EmployeeProfile::getEmployee);     // since not all fields are needed to serve the page
 
         // return the list of employees
-        return employeeStream.collect(Collectors.toList());
+        return employeeStream.collect(Collectors.toList()); // since stream, need to be collected to List
     }
 
     private boolean fitEmployee(List<Project> projects, LocalDate projectStartDate, LocalDate projectEndDate) {
@@ -64,7 +64,7 @@ public class AvailableEmployeesImpl implements IAvailableEmployees {
         }
         for (int i = 0; i < projects.size(); i++) {
 
-            if ( i == projects.size() - 1){
+            if ( i == projects.size() - 1){     // last item
                 return ( projectStartDate.isAfter(projects.get(0).getProject_end_date()) ||
                         projectEndDate.isBefore(projects.get(0).getProject_start_date()));
             }
@@ -78,11 +78,11 @@ public class AvailableEmployeesImpl implements IAvailableEmployees {
     }
 
     private List<EmployeeProfile> getAllEmployees() {
-        OBJECT_MAPPER.registerModule(new JavaTimeModule());
+        OBJECT_MAPPER.registerModule(new JavaTimeModule());     // registers to include TimeModule to parse LocalDate
 
         List<EmployeeProfile> employeeProfiles = new ArrayList<>();
         try {
-            JsonNode jsonNode = OBJECT_MAPPER.readTree(new URL("http://employementprofilingapp-env.snvx8mbkdw.us-east-2.elasticbeanstalk.com/v1/api/employees")).get("data");
+            JsonNode jsonNode = OBJECT_MAPPER.readTree(new URL("http://employementprofilingapp-env.snvx8mbkdw.us-east-2.elasticbeanstalk.com/v1/api/employees")).get("data");  // read json as Tree node for looping and custom mapping... ie deserialization
             for (JsonNode next : jsonNode) {
                 EmployeeProfile employeeProfile = new EmployeeProfile();
 
