@@ -1,9 +1,10 @@
 package io.turntabl.services;
 
 import io.turntabl.models.Employee;
-import java.util.Date;
+
+import java.time.LocalDate;
 import java.util.List;
 
 public interface IAvailableEmployees {
-    List<Employee> getAllAvailableEmployees(Date projectStartDate, Date projectEndDate);
+    List<Employee> getAllAvailableEmployees(LocalDate projectStartDate, LocalDate projectEndDate);
 }

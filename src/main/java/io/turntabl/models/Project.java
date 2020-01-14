@@ -1,13 +1,26 @@
 package io.turntabl.models;
 
+import java.time.LocalDate;
+
 public class Project {
     private int project_id;
     private String project_name;
     private String project_description;
-    private String project_start_date;
-    private String project_end_date;
+    private LocalDate project_start_date;
+    private LocalDate project_end_date;
 
     public Project() {
+    }
+
+    @Override
+    public String toString() {
+        return "Project{" +
+                "project_id=" + project_id +
+                ", project_name='" + project_name + '\'' +
+                ", project_description='" + project_description + '\'' +
+                ", project_start_date=" + project_start_date +
+                ", project_end_date=" + project_end_date +
+                '}';
     }
 
     public int getProject_id() {
@@ -34,30 +47,19 @@ public class Project {
         this.project_description = project_description;
     }
 
-    public String getProject_start_date() {
+    public LocalDate getProject_start_date() {
         return project_start_date;
     }
 
-    public void setProject_start_date(String project_start_date) {
+    public void setProject_start_date(LocalDate project_start_date) {
         this.project_start_date = project_start_date;
     }
 
-    public String getProject_end_date() {
+    public LocalDate getProject_end_date() {
         return project_end_date;
     }
 
-    public void setProject_end_date(String project_end_date) {
+    public void setProject_end_date(LocalDate project_end_date) {
         this.project_end_date = project_end_date;
-    }
-
-    @Override
-    public String toString() {
-        return "Project{" +
-                "project_id=" + project_id +
-                ", project_name='" + project_name + '\'' +
-                ", project_description='" + project_description + '\'' +
-                ", project_start_date='" + project_start_date + '\'' +
-                ", project_end_date='" + project_end_date + '\'' +
-                '}';
     }
 }

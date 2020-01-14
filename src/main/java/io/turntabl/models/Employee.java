@@ -1,5 +1,6 @@
 package io.turntabl.models;
 
+import java.time.LocalDate;
 import java.util.List;
 
 //public class Employee {
@@ -129,7 +130,7 @@ public class Employee {
     private String employee_address;
     private String employee_dev_level;
     private String employee_gender;
-    private String employee_hire_date;
+    private LocalDate employee_hire_date;
     private boolean employee_onleave;
     private List<String> tech_stack;
     private List<Project> projects;
@@ -203,11 +204,11 @@ public class Employee {
         this.employee_gender = employee_gender;
     }
 
-    public String getEmployee_hire_date() {
+    public LocalDate getEmployee_hire_date() {
         return employee_hire_date;
     }
 
-    public void setEmployee_hire_date(String employee_hire_date) {
+    public void setEmployee_hire_date(LocalDate employee_hire_date) {
         this.employee_hire_date = employee_hire_date;
     }
 
@@ -246,7 +247,7 @@ public class Employee {
                 ", employee_address='" + employee_address + '\'' +
                 ", employee_dev_level='" + employee_dev_level + '\'' +
                 ", employee_gender='" + employee_gender + '\'' +
-                ", employee_hire_date='" + employee_hire_date + '\'' +
+                ", employee_hire_date=" + employee_hire_date +
                 ", employee_onleave=" + employee_onleave +
                 ", tech_stack=" + tech_stack +
                 ", projects=" + projects +
