@@ -1,4 +1,4 @@
-# time
+# TIME MANAGEMENT SYSTEM
 
 ### what the application does.
 
