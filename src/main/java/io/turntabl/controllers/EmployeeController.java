@@ -1,24 +1,24 @@
 package io.turntabl.controllers;
 
-import io.turntabl.models.Employee;
-import io.turntabl.services.AvailableEmployeesImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.turntabl.models.Employee;
+import io.turntabl.services.AvailableEmployeesImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Api
 @RestController
 @CrossOrigin(origins = "*")
 public class EmployeeController {
-    public static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
 
     @Autowired
     private AvailableEmployeesImpl employeeService;
@@ -37,6 +37,5 @@ public class EmployeeController {
         }else {
             return employeeService.getAllAvailableEmployees(start, end);
         }
-        // return employeeService.getAllAvailableEmployees(start, end);
     }
 }

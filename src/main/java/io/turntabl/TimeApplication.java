@@ -11,10 +11,11 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 public class TimeApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(TimeApplication.class, args);
+        SpringApplication.run(TimeApplication.class, args);
 	}
 	@Bean
 	public AvailableEmployeesImpl getEmployeeService(){
 		return new AvailableEmployeesImpl();
 	}
+
 }
