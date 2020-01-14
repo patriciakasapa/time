@@ -29,6 +29,7 @@ dependencies {
 
 	compile("io.springfox:springfox-swagger2:2.9.2")
 	compile("io.springfox:springfox-swagger-ui:2.9.2")
+	compile("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.4")
 }
 
 test {

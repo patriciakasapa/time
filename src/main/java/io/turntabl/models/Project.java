@@ -3,31 +3,22 @@ package io.turntabl.models;
 import java.time.LocalDate;
 
 public class Project {
-    private int project_id;
+    private Integer project_id;
     private String project_name;
     private String project_description;
+    private String project_status;
+    private Boolean isworkingon;
     private LocalDate project_start_date;
     private LocalDate project_end_date;
 
     public Project() {
     }
 
-    @Override
-    public String toString() {
-        return "Project{" +
-                "project_id=" + project_id +
-                ", project_name='" + project_name + '\'' +
-                ", project_description='" + project_description + '\'' +
-                ", project_start_date=" + project_start_date +
-                ", project_end_date=" + project_end_date +
-                '}';
-    }
-
-    public int getProject_id() {
+    public Integer getProject_id() {
         return project_id;
     }
 
-    public void setProject_id(int project_id) {
+    public void setProject_id(Integer project_id) {
         this.project_id = project_id;
     }
 
@@ -45,6 +36,22 @@ public class Project {
 
     public void setProject_description(String project_description) {
         this.project_description = project_description;
+    }
+
+    public String getProject_status() {
+        return project_status;
+    }
+
+    public void setProject_status(String project_status) {
+        this.project_status = project_status;
+    }
+
+    public Boolean getIsworkingon() {
+        return isworkingon;
+    }
+
+    public void setIsworkingon(Boolean isworkingon) {
+        this.isworkingon = isworkingon;
     }
 
     public LocalDate getProject_start_date() {

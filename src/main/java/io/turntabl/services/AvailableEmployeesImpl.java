@@ -1,8 +1,7 @@
 package io.turntabl.services;
 
-import io.turntabl.models.Employee;
-import io.turntabl.models.Leave;
-import io.turntabl.models.Project;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import io.turntabl.models.*;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -26,7 +25,7 @@ public class AvailableEmployeesImpl implements IAvailableEmployees {
     @Override
     public List<Employee> getAllAvailableEmployees(LocalDate projectStartDate, LocalDate projectEndDate) {
         // http request
-        List<Employee> employees = getAllEmployees();
+        // List<Employee> employees = getAllEmployees();
 
         // filter out unavailable employees
        /* Stream<Employee> employeesReturningFromLeave = employees.stream().filter(Employee::isEmployee_onleave).filter(
@@ -38,7 +37,9 @@ public class AvailableEmployeesImpl implements IAvailableEmployees {
         Stream<Employee> employeesWithNoLeave = employees.stream().filter( x -> !x.isEmployee_onleave());
         Stream<Employee> availableEmployees = Stream.concat(employeesReturningFromLeave, employeesWithNoLeave);*/
 
-        Stream<Employee> employeeStream = employees.stream()
+
+       // I'm here
+        /*Stream<Employee> employeeStream = employees.stream()
                                                 .filter( employee -> {
                                                     System.out.println( employee);
                                                     employee.getProjects().sort(comparing(Project::getProject_start_date));
@@ -48,7 +49,8 @@ public class AvailableEmployeesImpl implements IAvailableEmployees {
                                                 });
 
         // return the list of employees
-        return employeeStream.collect(Collectors.toList());
+        return employeeStream.collect(Collectors.toList());*/
+        return new ArrayList<>();
     }
 
     private boolean fitEmployee(List<Project> projects, LocalDate projectStartDate, LocalDate projectEndDate) {
@@ -74,44 +76,23 @@ public class AvailableEmployeesImpl implements IAvailableEmployees {
         return false;
     }
 
-    private List<Employee> getAllEmployees() {
-        List<Employee> employee = new ArrayList<>();
-        try {
-            for (JsonNode next : OBJECT_MAPPER.readTree(new URL("https://ttmsdeveloperprofile.herokuapp.com/employees"))) {
-                Employee emp = new Employee();
-                emp.setEmployee_id(next.get("employee_id").asInt());
-                emp.setEmployee_firstname(next.get("employee_firstname").asText());
-                emp.setEmployee_lastname(next.get("employee_lastname").asText());
-                emp.setEmployee_onleave(next.get("employee_onleave").asBoolean());
-                emp.setEmployee_hire_date(LocalDate.parse(next.get("employee_hire_date").asText()));
-                emp.setEmployee_address(next.get("employee_address").asText());
-                emp.setEmployee_email(next.get("employee_email").asText());
-                emp.setEmployee_dev_level(next.get("employee_gender").asText());
-                emp.setEmployee_gender(next.get("employee_id").asText());
-                emp.setEmployee_phonenumber(next.get("employee_phonenumber").asText());
-                List<String> tech_stack = new ArrayList<>();
-                for (JsonNode tech: next.get("tech_stack")){
-                    tech_stack.add(tech.asText());
-                }
-                emp.setTech_stack( tech_stack);
+    private List<EmployeeProfile> getAllEmployees() {
+        OBJECT_MAPPER.registerModule(new JavaTimeModule());
 
-                List<Project> projects = new ArrayList<>();
-                for (JsonNode tech: next.get("projects")){
-                    Project proj = new Project();
-                    proj.setProject_id(tech.get("project_id").asInt());
-                    proj.setProject_description(tech.get("project_description").asText());
-                    proj.setProject_name(tech.get("project_name").asText());
-                    proj.setProject_start_date(LocalDate.parse(tech.get("project_start_date").asText()));
-                    proj.setProject_end_date(LocalDate.parse(tech.get("project_end_date").asText()));
-                    projects.add(proj);
-                }
-                emp.setProjects( projects);
-                employee.add(emp);
+        List<EmployeeProfile> employeeProfiles = new ArrayList<>();
+        try {
+            JsonNode jsonNode = OBJECT_MAPPER.readTree(new URL("http://employementprofilingapp-env.snvx8mbkdw.us-east-2.elasticbeanstalk.com/v1/api/employees")).get("data");
+            for (JsonNode next : jsonNode) {
+                EmployeeProfile employeeProfile = new EmployeeProfile();
+
+                employeeProfile.setEmployee(OBJECT_MAPPER.treeToValue(next.get("employee"), Employee.class));
+                employeeProfile.setProjects(Arrays.asList(OBJECT_MAPPER.treeToValue(next.get("projects"), Project[].class)));
+                employeeProfile.setTech_stack(Arrays.asList(OBJECT_MAPPER.treeToValue(next.get("tech_stack"), Tech[].class)));
+
+                employeeProfiles.add(employeeProfile);
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return employee;
+        } catch (IOException e) { e.printStackTrace(); return new ArrayList<>();}
+        return employeeProfiles;
     }
 
     private Optional<Leave> getLeave(String employeeId) {
