@@ -12,9 +12,6 @@ This aplication searches for available employee who is free from the starting da
 4. when an employee's project in a queue ends before the new project starts
 
 ### resources
- Database of employee profile
- Database for leave
- Database for projects
  Resful Api for Data(http://employementprofilingapp-env.snvx8mbkdw.us-east-2.elasticbeanstalk.com/swagger-ui.html#/tech-controller/getAllTechnologiesUsingGET)
  
 
