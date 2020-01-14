@@ -31,7 +31,6 @@ public class EmployeeController {
     ){
         LocalDate start = LocalDate.parse(projectStartDate);
         LocalDate end = LocalDate.parse(projectEndDate);
-        System.out.println(start + "\t<>\t" +  end);
         if ( start.isAfter(end)){
             return new ArrayList<>();
         }else {
