@@ -25,7 +25,7 @@ public class AvailableEmployeesImpl implements IAvailableEmployees {
     @Override
     public List<Employee> getAllAvailableEmployees(LocalDate projectStartDate, LocalDate projectEndDate) {
         // http request
-        // List<Employee> employees = getAllEmployees();
+        List<EmployeeProfile> employees = getAllEmployees();
 
         // filter out unavailable employees
        /* Stream<Employee> employeesReturningFromLeave = employees.stream().filter(Employee::isEmployee_onleave).filter(
@@ -39,18 +39,19 @@ public class AvailableEmployeesImpl implements IAvailableEmployees {
 
 
        // I'm here
-        /*Stream<Employee> employeeStream = employees.stream()
+        Stream<Employee> employeeStream = employees.stream()
                                                 .filter( employee -> {
-                                                    System.out.println( employee);
                                                     employee.getProjects().sort(comparing(Project::getProject_start_date));
-                                                    List<Project> projectList = employee.getProjects().stream().filter(x -> x.getProject_end_date().isAfter(LocalDate.now())).collect(Collectors.toList());
+                                                    List<Project> projectList = employee.getProjects().stream()
+                                                                                        .filter(x -> x.getProject_end_date().isAfter(LocalDate.now()))
+                                                                                        .collect(Collectors.toList());
                                                     employee.setProjects(projectList);
                                                     return fitEmployee(projectList, projectStartDate, projectEndDate );
-                                                });
+                                                })
+                                                .map(EmployeeProfile::getEmployee);
 
         // return the list of employees
-        return employeeStream.collect(Collectors.toList());*/
-        return new ArrayList<>();
+        return employeeStream.collect(Collectors.toList());
     }
 
     private boolean fitEmployee(List<Project> projects, LocalDate projectStartDate, LocalDate projectEndDate) {
