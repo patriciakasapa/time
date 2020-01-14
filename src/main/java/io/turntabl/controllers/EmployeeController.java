@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -28,16 +29,14 @@ public class EmployeeController {
             @RequestParam("startDate") String projectStartDate,
             @RequestParam("endDate") String projectEndDate
     ){
-         try {
-            Date start = DATE_FORMAT.parse(projectStartDate);
-            Date end = DATE_FORMAT.parse(projectEndDate);
-            if ( start.after(end)){
-                return new ArrayList<>();
-            }
+        LocalDate start = LocalDate.parse(projectStartDate);
+        LocalDate end = LocalDate.parse(projectEndDate);
+        System.out.println(start + "\t<>\t" +  end);
+        if ( start.isAfter(end)){
+            return new ArrayList<>();
+        }else {
             return employeeService.getAllAvailableEmployees(start, end);
-        } catch (ParseException e) {
-            e.printStackTrace();
         }
-        return new ArrayList<>();
+        // return employeeService.getAllAvailableEmployees(start, end);
     }
 }
