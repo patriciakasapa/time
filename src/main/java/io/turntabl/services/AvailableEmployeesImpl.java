@@ -82,7 +82,7 @@ public class AvailableEmployeesImpl implements IAvailableEmployees {
 
         List<EmployeeProfile> employeeProfiles = new ArrayList<>();
         try {
-            JsonNode jsonNode = OBJECT_MAPPER.readTree(new URL("http://employementprofilingapp-env.snvx8mbkdw.us-east-2.elasticbeanstalk.com/v1/api/employees")).get("data");  // read json as Tree node for looping and custom mapping... ie deserialization
+            JsonNode jsonNode = OBJECT_MAPPER.readTree(new URL("http://employmentprofilingapp-env.dbqsnkfqpq.us-east-2.elasticbeanstalk.com/v1/api/employees")).get("data");  // read json as Tree node for looping and custom mapping... ie deserialization
             for (JsonNode next : jsonNode) {
                 EmployeeProfile employeeProfile = new EmployeeProfile();
 
