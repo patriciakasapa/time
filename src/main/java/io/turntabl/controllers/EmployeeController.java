@@ -24,7 +24,7 @@ public class EmployeeController {
     private AvailableEmployeesImpl employeeService;
 
     @ApiOperation("get all availableEmployees")
-    @CrossOrigin(origins = "https://tcms-ui-ng.herokuapp.com/")
+    @CrossOrigin(origins = "https://tcms-ui-ng.herokuapp.com")
     @GetMapping(value = "v1/api/availableEmployees", produces = "application/json")
     public List<Employee> getAllAvailableEmployees(
             @RequestParam("startDate") String projectStartDate,
