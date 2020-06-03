@@ -13,17 +13,18 @@ import org.springframework.web.bind.annotation.RestController;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Api
 @RestController
-@CrossOrigin(origins = "*")
 public class EmployeeController {
 
     @Autowired
     private AvailableEmployeesImpl employeeService;
 
     @ApiOperation("get all availableEmployees")
+    @CrossOrigin(origins = "https://tcms-ui-ng.herokuapp.com")
     @GetMapping(value = "v1/api/availableEmployees", produces = "application/json")
     public List<Employee> getAllAvailableEmployees(
             @RequestParam("startDate") String projectStartDate,
@@ -31,8 +32,20 @@ public class EmployeeController {
     ){
         LocalDate start = LocalDate.parse(projectStartDate);
         LocalDate end = LocalDate.parse(projectEndDate);
+
+        Employee defaultEmp = new Employee();
+        defaultEmp.setEmployee_address("employee address");
+        defaultEmp.setEmployee_email("employee mail");
+        defaultEmp.setEmployee_firstname("employee name");
+        defaultEmp.setEmployee_gender("emplyee gender");
+        defaultEmp.setEmployee_id(1);
+        defaultEmp.setEmployee_lastname("employee lastname");
+        defaultEmp.setEmployee_phonenumber("1234");
+
+        List<Employee> employees = Arrays.asList(defaultEmp);
+
         if ( start.isAfter(end)){
-            return new ArrayList<>();
+            return employees;
         }else {
             return employeeService.getAllAvailableEmployees(start, end);
         }
